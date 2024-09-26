@@ -1,11 +1,10 @@
 import java.util.Random;
 
-public class Task2 {
+public class Task2 implements Comparable<Task2> {
     String id;
     private Long startingTime;
     private Long finishTime;
-    private int priority;
-    
+    public int priority;
 
     public Task2(String id, int priority) {
         this.id = id;
@@ -33,6 +32,11 @@ public class Task2 {
             return finishTime - startingTime;
         }
         return null;
+    }
+
+    @Override
+    public int compareTo(Task2 arg0) {
+        return this.priority - ((Task2) arg0).priority;
     }
 
 }

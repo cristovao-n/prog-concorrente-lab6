@@ -7,14 +7,14 @@ import java.util.concurrent.TimeUnit;
 
 public class ScenarioBase {
 
-    private static BlockingQueue<Task2> queue = new PriorityBlockingQueue<>();
+    private static BlockingQueue<Task2> queue = new PriorityBlockingQueue<>(1000, new Task2Comparator());
 
     public static void main(String[] args) {
 
         TaskProducer2[] taskProducers = new TaskProducer2[] {
-                new TaskProducer2(queue, "p1"),
-                new TaskProducer2(queue, "p2"),
-                new TaskProducer2(queue, "p3"),
+                new TaskProducer2(queue, "p1", 0, 13),
+                new TaskProducer2(queue, "p2", 1, 7),
+                new TaskProducer2(queue, "p3", 2, 3),
         };
 
         Node2[] taskConsumers = new Node2[] {
@@ -27,8 +27,6 @@ public class ScenarioBase {
         producerService.execute(taskProducers[0]);
         producerService.execute(taskProducers[1]);
         producerService.execute(taskProducers[2]);
-        producerService.execute(taskProducers[3]);
-        producerService.execute(taskProducers[4]);
 
         ExecutorService consumerService = Executors.newFixedThreadPool(3);
         consumerService.execute(taskConsumers[0]);
