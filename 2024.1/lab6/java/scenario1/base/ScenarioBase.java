@@ -44,7 +44,7 @@ public class ScenarioBase {
                 System.out.println("Produtor: " + tp.id);
                 for (Task1 task : tp.tasks) {
                     if (task.hasFinished()) {
-                        System.out.println(task.id + ": " + task.getExecutionTime());
+                        System.out.println(task.id + ": " + task.getExecutionTime() + "ms");
                     }
                 }
                 System.out.println();
